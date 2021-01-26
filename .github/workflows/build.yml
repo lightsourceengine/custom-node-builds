@@ -1,0 +1,48 @@
+name: build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-job:
+    name: build
+    runs-on: ubuntu-18.04
+    strategy:
+      matrix:
+       include:
+         - arch: armv6l
+         - arch: armv6l
+    steps:
+      - name: Checkout custom-node-builds
+        uses: actions/checkout@v1
+        with:
+          path: custom-node-builds
+
+      - name: Checkout crosstools
+        uses: actions/checkout@v1
+        with:
+          repsository: lightsourceengine/crosstools
+          path: crosstools
+
+      - name: Linux Packages
+        run: |
+          sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
+          sudo apt-get update
+          sudo apt-get install -y curl g++-6 gcc-6 gcc-6-multilib g++-6-multilib make python ccache xz-utils
+          sudo ln -s /usr/include/asm-generic /usr/include/asm
+        shell: bash
+
+      - name: Build
+        env:
+          CROSSTOOLS_HOME="${GITHUB_WORKSPACE}/crosstools"
+          BLD_NODE_VERSION="15.6.0"
+          BLD_TARGET_ARCH=${{matrix.arch}}
+        run: ${GITHUB_WORKSPACE}/custom-node-builds/scripts/build-arm.sh
+        shell: bash
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: ${GITHUB_WORKSPACE}/custom-node-builds/out/node-v${BLD_NODE_VERSION}/node-*.tar.gz
