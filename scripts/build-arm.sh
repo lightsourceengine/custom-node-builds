@@ -2,7 +2,7 @@
 
 set -e
 
-node-build () {
+node-build() {
   make \
     -j$(getconf _NPROCESSORS_ONLN) \
     binary \

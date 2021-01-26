@@ -21,6 +21,7 @@ env:
   global:
     - CROSSTOOLS_HOME="${HOME}/crosstools"
     - BLD_NODE_VERSION="15.6.0"
+    - ARTIFACTS_TARGET_PATHS="/${TRAVIS_REPO_SLUG}/${BLD_NODE_VERSION}"
   jobs:
     - BLD_TARGET_ARCH="armv6l"
     - BLD_TARGET_ARCH="armv7l"
