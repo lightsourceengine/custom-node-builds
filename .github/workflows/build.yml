@@ -16,12 +16,12 @@ jobs:
          - arch: armv7l
     steps:
       - name: Checkout custom-node-builds
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           path: main
 
       - name: Checkout crosstools
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           repository: lightsourceengine/crosstools
           path: crosstools
