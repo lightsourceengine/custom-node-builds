@@ -29,5 +29,6 @@ env:
 install:
   - set -e
   - git clone --depth 1 https://github.com/lightsourceengine/crosstools.git "${CROSSTOOLS_HOME}"
+  - sudo ln -s /usr/include/asm-generic /usr/include/asm
 script:
   - ./scripts/build-arm.sh
