@@ -46,4 +46,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: custom-node-builds/out/node-v${BLD_NODE_VERSION}/node-*.tar.gz
+          path: ${GITHUB_WORKSPACE}/main/out/node-v${BLD_NODE_VERSION}/node-*.tar.gz
