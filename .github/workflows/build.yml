@@ -18,12 +18,12 @@ jobs:
       - name: Checkout custom-node-builds
         uses: actions/checkout@v1
         with:
-          path: custom-node-builds
+          path: main
 
       - name: Checkout crosstools
         uses: actions/checkout@v1
         with:
-          repsository: lightsourceengine/crosstools
+          repository: lightsourceengine/crosstools
           path: crosstools
 
       - name: Linux Packages
@@ -36,10 +36,13 @@ jobs:
 
       - name: Build
         env:
-          CROSSTOOLS_HOME: crosstools
+          CROSSTOOLS_HOME: ${GITHUB_WORKSPACE}/crosstools
           BLD_NODE_VERSION: 15.6.0
           BLD_TARGET_ARCH: ${{matrix.arch}}
-        run: ./custom-node-builds/scripts/build-arm.sh
+        run: |
+          echo ${GITHUB_WORKSPACE}
+          echo ${CROSSTOOLSHOME}
+          ${GITHUB_WORKSPACE}/main/scripts/build-arm.sh
         shell: bash
 
       - uses: actions/upload-artifact@v2
