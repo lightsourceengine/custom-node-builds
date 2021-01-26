@@ -13,7 +13,7 @@ node_build() {
     CUSTOMTAG="$1" \
     BUILD_INTL_FLAGS="--with-intl=none" \
     BUILD_DOWNLOAD_FLAGS="--download=none" \
-    CONFIG_FLAGS="--without-npm --cross-compiling $2"
+    CONFIG_FLAGS="--without-npm $2"
 }
 
 ###############################################################################
