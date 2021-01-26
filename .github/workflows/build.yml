@@ -13,7 +13,7 @@ jobs:
       matrix:
        include:
          - arch: armv6l
-         - arch: armv6l
+         - arch: armv7l
     steps:
       - name: Checkout custom-node-builds
         uses: actions/checkout@v1
@@ -36,9 +36,9 @@ jobs:
 
       - name: Build
         env:
-          CROSSTOOLS_HOME=crosstools
-          BLD_NODE_VERSION=15.6.0
-          BLD_TARGET_ARCH=${{matrix.arch}}
+          CROSSTOOLS_HOME: crosstools
+          BLD_NODE_VERSION: 15.6.0
+          BLD_TARGET_ARCH: ${{matrix.arch}}
         run: ./custom-node-builds/scripts/build-arm.sh
         shell: bash
 
