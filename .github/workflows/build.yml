@@ -11,9 +11,7 @@ jobs:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
-       include:
-         - arch: armv6l
-         - arch: armv7l
+        arch: [armv6l, armv7l]
     steps:
       - name: Checkout custom-node-builds
         uses: actions/checkout@v2

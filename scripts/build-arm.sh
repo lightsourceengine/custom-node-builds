@@ -38,7 +38,7 @@ cd "node-v${BLD_NODE_VERSION}"
 case ${BLD_TARGET_ARCH} in
   armv6l)
     # Optimizations for Raspberry Pi Zero
-    FLAGS="-mcpu=arm1176jzf-s -mfloat-abi=hard -mfpu=vfp"
+    FLAGS="-march=armv6zk"
   ;;
   armv7l)
     # TODO: is neon supported on all Raspberry Pi boards?
