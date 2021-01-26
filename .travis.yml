@@ -1,4 +1,5 @@
 dist: bionic
+language: cpp
 addons:
   artifacts:
     branch: master

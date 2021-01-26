@@ -2,7 +2,7 @@
 
 set -e
 
-node-build() {
+node_build() {
   make \
     -j$(getconf _NPROCESSORS_ONLN) \
     binary \
@@ -61,7 +61,7 @@ export CC="ccache ${CROSSTOOLS_HOME}/x64-gcc-6.3.1/arm-rpi-linux-gnueabihf/bin/a
 
 # ccache is being used, so the subsequent build completes very quickly (workaround parallel build limit in CI service)
 
-node-build "xnpm,xintl"
-node-build "xnpm,xintl,xhttp" "--without-ssl"
+node_build "xnpm,xintl"
+node_build "xnpm,xintl,xhttp" "--without-ssl"
 
 # note: at this point, tar balls from all builds will be in node source root, ready to be uploaded to s3
