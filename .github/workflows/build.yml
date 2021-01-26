@@ -36,13 +36,13 @@ jobs:
 
       - name: Build
         env:
-          CROSSTOOLS_HOME="${GITHUB_WORKSPACE}/crosstools"
-          BLD_NODE_VERSION="15.6.0"
+          CROSSTOOLS_HOME=crosstools
+          BLD_NODE_VERSION=15.6.0
           BLD_TARGET_ARCH=${{matrix.arch}}
-        run: ${GITHUB_WORKSPACE}/custom-node-builds/scripts/build-arm.sh
+        run: ./custom-node-builds/scripts/build-arm.sh
         shell: bash
 
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: ${GITHUB_WORKSPACE}/custom-node-builds/out/node-v${BLD_NODE_VERSION}/node-*.tar.gz
+          path: custom-node-builds/out/node-v${BLD_NODE_VERSION}/node-*.tar.gz
