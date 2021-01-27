@@ -38,11 +38,12 @@ cd "node-v${BLD_NODE_VERSION}"
 case ${BLD_TARGET_ARCH} in
   armv6l)
     # Optimizations for Raspberry Pi Zero
-    FLAGS="-march=armv6zk"
+    FLAGS="-march=armv6zk -mfloat-abi=hard -mfpu=vfp"
   ;;
   armv7l)
-    # TODO: is neon supported on all Raspberry Pi boards?
-    FLAGS="-mtune=cortex-a7 -mfpu=neon-vfpv4"
+    # Optimizations for Raspberry Pi 2/3/4. Neon is not supported on original
+    # Pi (and some Pi 2 boards don't support it).
+    FLAGS="-march=armv7-a -mfloat-abi=softfp -mfpu=neon"
   ;;
   *)
     echo "${BLD_TARGET_ARCH} is not a valid BLD_TARGET_ARCH value. [armv6l,armv7l]"
