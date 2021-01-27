@@ -1,13 +1,11 @@
-name: build
+name: build-arm-workflow
 
 on:
   push:
-    branches:
-      - master
+    branches: master
 
 jobs:
-  build-job:
-    name: build
+  build-arm-job:
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -37,11 +35,10 @@ jobs:
           BLD_NODE_VERSION: 15.6.0
           BLD_TARGET_ARCH: ${{matrix.arch}}
           CROSSTOOLS_HOME: ${{github.workspace}}/crosstools
-        run: |
-          ./main/scripts/build-arm.sh
+        run: ./main/scripts/build-arm.sh
         shell: bash
 
       - uses: actions/upload-artifact@v2
         with:
           name: my-artifact
-          path: main/out/node-v*/node-*.tar.?z
+          path: main/out/node-v*/node-*.tar.gz
