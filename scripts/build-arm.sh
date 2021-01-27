@@ -35,14 +35,19 @@ cd "node-v${BLD_NODE_VERSION}"
 # Configure compiler flags for cross compiling
 ###############################################################################
 
+# The -march flag is added to convince node configure to choose the correct arm version. The -mfloat-abi and
+# -mfpu flags seem to be chosen automatically by configure and cannot be overridden.
+
 case ${BLD_TARGET_ARCH} in
   armv6l)
-    # Optimizations for Raspberry Pi Zero (should work for Pi 1)
-    FLAGS="-march=armv6zk -mfloat-abi=hard -mfpu=vfp"
+    # Settings for Raspberry Pi Zero (should work for Pi 1)
+    FLAGS="-march=armv6zk"
   ;;
   armv7l)
-    # Optimizations for Raspberry Pi 2/3/4.
-    FLAGS="-march=armv7-a -mfloat-abi=hard -mfpu=neon-vfpv4"
+    # Settings for Raspberry Pi 2/3/4.
+    # configure will choose -mfpu=vfp3 for arm7. neon would be preferred, but the build breaks (v8 and other dependencies)
+    # when neon is used.
+    FLAGS="-march=armv7-a"
   ;;
   *)
     echo "${BLD_TARGET_ARCH} is not a valid BLD_TARGET_ARCH value. [armv6l,armv7l]"
