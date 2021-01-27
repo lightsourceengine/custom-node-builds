@@ -2,10 +2,12 @@ name: build-arm-workflow
 
 on:
   push:
-    branches: master
+    branches:
+      - master
 
 jobs:
   build-arm-job:
+    if: github.event_name == 'push' && contains(toJson(github.event.commits), '[ci skip]') == false
     runs-on: ubuntu-18.04
     strategy:
       matrix:
@@ -40,5 +42,5 @@ jobs:
 
       - uses: actions/upload-artifact@v2
         with:
-          name: my-artifact
+          name: arm-packages
           path: main/out/node-v*/node-*.tar.gz
