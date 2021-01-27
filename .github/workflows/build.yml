@@ -34,13 +34,10 @@ jobs:
 
       - name: Build
         env:
-          CROSSTOOLS_HOME: ${GITHUB_WORKSPACE}/crosstools
           BLD_NODE_VERSION: 15.6.0
           BLD_TARGET_ARCH: ${{matrix.arch}}
         run: |
-          echo ${GITHUB_WORKSPACE}
-          echo ${CROSSTOOLSHOME}
-          ${GITHUB_WORKSPACE}/main/scripts/build-arm.sh
+          CROSSTOOLS_HOME="${GITHUB_WORKSPACE}/crosstools" ${GITHUB_WORKSPACE}/main/scripts/build-arm.sh
         shell: bash
 
       - uses: actions/upload-artifact@v2
