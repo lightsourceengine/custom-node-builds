@@ -66,7 +66,7 @@ export CC="ccache ${CROSSTOOLS_HOME}/x64-gcc-6.3.1/arm-rpi-linux-gnueabihf/bin/a
 
 # ccache is being used, so the subsequent build completes very quickly (workaround parallel build limit in CI service)
 
-node_build "pi,xnpm,xintl"
-node_build "pi,xnpm,xintl,xhttp" "--without-ssl"
+node_build "pi_xnpm_xintl"
+node_build "pi_xnpm_xintl_xhttp" "--without-ssl"
 
 # note: at this point, tar balls from all builds will be in node source root, ready to be uploaded to s3
