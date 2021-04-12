@@ -34,7 +34,7 @@ jobs:
 
       - name: Build
         env:
-          BLD_NODE_VERSION: 15.6.0
+          BLD_NODE_VERSION: 15.14.0
           BLD_TARGET_ARCH: ${{matrix.arch}}
           CROSSTOOLS_HOME: ${{github.workspace}}/crosstools
         run: ./main/scripts/build-arm.sh
