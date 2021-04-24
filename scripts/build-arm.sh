@@ -55,10 +55,10 @@ case ${BLD_TARGET_ARCH} in
   ;;
 esac
 
-export CC_host="ccache gcc-6 -m32"
-export CXX_host="ccache g++-6 -m32"
-export CXX="ccache ${CROSSTOOLS_HOME}/x64-gcc-6.3.1/arm-rpi-linux-gnueabihf/bin/arm-rpi-linux-gnueabihf-g++ ${FLAGS}"
-export CC="ccache ${CROSSTOOLS_HOME}/x64-gcc-6.3.1/arm-rpi-linux-gnueabihf/bin/arm-rpi-linux-gnueabihf-gcc ${FLAGS}"
+export CC_host="ccache gcc-8 -m32"
+export CXX_host="ccache g++-8 -m32"
+export CXX="ccache ${BLD_TOOLCHAIN_PREFIX}-g++ ${FLAGS}"
+export CC="ccache ${BLD_TOOLCHAIN_PREFIX}-gcc ${FLAGS}"
 
 ###############################################################################
 # Run custom node builds

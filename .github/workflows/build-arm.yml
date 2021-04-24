@@ -18,25 +18,26 @@ jobs:
         with:
           path: main
 
-      - name: Checkout crosstools
-        uses: actions/checkout@v2
-        with:
-          repository: lightsourceengine/crosstools
-          path: crosstools
-
       - name: Linux Packages
         run: |
           sudo apt-add-repository -y "ppa:ubuntu-toolchain-r/test"
           sudo apt-get update
-          sudo apt-get install -y curl g++-6 gcc-6 gcc-6-multilib g++-6-multilib make python ccache xz-utils
+          sudo apt-get install -y curl g++-8 gcc-8 gcc-8-multilib g++-8-multilib make python ccache xz-utils
           sudo ln -s /usr/include/asm-generic /usr/include/asm
+        shell: bash
+
+      - name: Get ARM Toolchain
+        run: |
+          wget https://github.com/lightsourceengine/ci/releases/download/v1.0.0/x64-gcc-8.3.0.tar.xz
+          tar -xJf x64-gcc-8.3.0.tar.xz
+          echo "${{github.workspace}}/x64-gcc-8.3.0/arm-rpi-linux-gnueabihf/bin" >> $GITHUB_PATH
         shell: bash
 
       - name: Build
         env:
           BLD_NODE_VERSION: 15.14.0
           BLD_TARGET_ARCH: ${{matrix.arch}}
-          CROSSTOOLS_HOME: ${{github.workspace}}/crosstools
+          BLD_TOOLCHAIN_PREFIX: arm-rpi-linux-gnueabihf
         run: ./main/scripts/build-arm.sh
         shell: bash
 
