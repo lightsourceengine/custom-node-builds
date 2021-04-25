@@ -2,7 +2,7 @@
 
 set -e
 
-source scripts/setup.sh "$@"
+source "$(cd "$(dirname "$0")" && pwd -P)/setup.sh" "$@"
 
 make \
   -j$(getconf _NPROCESSORS_ONLN) \
