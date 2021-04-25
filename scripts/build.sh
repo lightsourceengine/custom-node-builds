@@ -9,5 +9,5 @@ make \
   binary \
   V= \
   DESTCPU="arm" \
-  ARCH="${$1}" \
+  ARCH="$1" \
   DISTTYPE="release"

@@ -9,7 +9,7 @@ make \
   binary \
   V= \
   DESTCPU="arm" \
-  ARCH="${$1}" \
+  ARCH="$1" \
   DISTTYPE="custom" \
   CUSTOMTAG="pi_xnpm_xintl_xhttp" \
   BUILD_INTL_FLAGS="--with-intl=none" \
