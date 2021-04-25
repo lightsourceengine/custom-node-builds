@@ -35,7 +35,7 @@ jobs:
 
       - name: Build
         env:
-          BLD_NODE_VERSION: 15.14.0
+          BLD_NODE_VERSION: 16.0.0
           BLD_TARGET_ARCH: ${{matrix.arch}}
           BLD_TOOLCHAIN_PREFIX: arm-rpi-linux-gnueabihf
         run: ./main/scripts/build-arm.sh
