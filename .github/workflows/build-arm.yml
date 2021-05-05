@@ -35,7 +35,7 @@ jobs:
         shell: bash
 
       - name: Build
-        run: main/scripts/${{matrix.script}} ${{matrix.arch}} arm-rpi-linux-gnueabihf 16.0.0
+        run: main/scripts/${{matrix.script}} ${{matrix.arch}} arm-rpi-linux-gnueabihf 16.1.0
         shell: bash
 
       - uses: actions/upload-artifact@v2
